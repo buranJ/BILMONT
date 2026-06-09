@@ -1,0 +1,144 @@
+{
+  "brand": "BILMONT",
+  "nav": {
+    "about": "About",
+    "model": "Model",
+    "features": "Program",
+    "director": "Director",
+    "admissions": "Admissions",
+    "contact": "Contact"
+  },
+  "cta": {
+    "apply": "Apply now",
+    "tour": "Book a tour"
+  },
+  "hero": {
+    "tag": "Bishkek · Kyrgyzstan",
+    "h1_italic": "A school where children",
+    "h1_bold": "grow up confident",
+    "sub": "The first AI-native trilingual private school in Central Asia — we help children think, create, and grow.",
+    "cta": "Apply now",
+    "cta2": "Explore the model"
+  },
+  "stats": [
+    { "value": "250–300", "label": "students" },
+    { "value": "$4,500", "label": "per year" },
+    { "value": "24", "label": "max per class" },
+    { "value": "18+", "label": "Scholly modules" }
+  ],
+  "highlights": {
+    "items": [
+      {
+        "title": "AI Development Compass",
+        "desc": "A monthly 6-dimension growth map for every child, with guidance for the family."
+      },
+      {
+        "title": "STEM & Robotics",
+        "desc": "Coding, robotics and digital literacy from the very first grade."
+      },
+      {
+        "title": "Parent Communication",
+        "desc": "Transparent, real-time communication through the Scholly platform."
+      }
+    ]
+  },
+  "features": {
+    "title": "Everything your child needs to grow",
+    "sub": "From artificial intelligence to robotics — our program is built so every child reaches their full potential.",
+    "items": [
+      {
+        "title": "Development Compass",
+        "desc": "An AI system maps your child's growth across 6 dimensions and suggests a personal development path."
+      },
+      {
+        "title": "STEM & Robotics",
+        "desc": "Science, technology and engineering from grade 1 — children build, code, and solve real problems."
+      },
+      {
+        "title": "Three languages",
+        "desc": "Russian, Kyrgyz and English in one environment — natural trilingualism from day one."
+      },
+      {
+        "title": "Scholly Platform",
+        "desc": "18+ modules for learning, feedback, and parent connection in one digital space."
+      }
+    ]
+  },
+  "learning": {
+    "tag": "Educational Model",
+    "title": "How learning works at Bilmont",
+    "sub": "AI + Educational Technology + Individual Guidance — three pillars that complement each other and cannot be separated.",
+    "pillars": [
+      {
+        "icon": "🎯",
+        "title": "AI-Powered Personalization",
+        "desc": "Each student's learning path, pace and interests are tracked individually. AI is the teacher's assistant — it provides the data; the teacher makes the decision."
+      },
+      {
+        "icon": "🤖",
+        "title": "STEM, Robotics & EdTech",
+        "desc": "Digital literacy, coding and robotics workshops from grade 1. Children grow up not as consumers but as creators of technology."
+      },
+      {
+        "icon": "❤️",
+        "title": "Guidance & SEL Support",
+        "desc": "Scientific class-based assessment with the EduTech CPT toolkit. Multiple intelligences, learning styles and exam anxiety are all monitored."
+      }
+    ],
+    "compass": {
+      "label": "Signature tool",
+      "title": "Development Compass",
+      "desc": "Holistic tracking across 6 dimensions for every child. AI generates, counselors interpret, families understand.",
+      "dimensions": [
+        { "k": "A", "label": "Academic Growth" },
+        { "k": "S", "label": "Social Skills" },
+        { "k": "E", "label": "Emotional Growth" },
+        { "k": "B", "label": "Behavior" },
+        { "k": "T", "label": "Talents & Interests" },
+        { "k": "L", "label": "Learning Style" }
+      ]
+    },
+    "languages": {
+      "title": "Three languages — three doors",
+      "sub": "Language isn't taught. It's lived.",
+      "items": [
+        { "flag": "🇷🇺", "name": "Russian", "role": "Primary language of instruction" },
+        { "flag": "🇰🇬", "name": "Kyrgyz", "role": "Cultural & academic language" },
+        { "flag": "🌍", "name": "English", "role": "Language of global communication" }
+      ]
+    }
+  },
+  "interior": {
+    "tag": "Our space",
+    "title": "A space made for learning",
+    "sub": "Spacious 50 m² classrooms, full of light and air, with thoughtful zones for study, play and rest. Every detail is designed so children feel calm, safe and curious — a place where the wish to learn something new is born every day."
+  },
+  "director": {
+    "tag": "Director",
+    "name": "Name Surname",
+    "role": "Director, Bilmont School",
+    "quote": "Every child is seen. No one slips through.",
+    "bio": "Bilmont is not just a school — it's a laboratory showing what's possible in Central Asia. We're building a new-generation school where children become self-aware, love learning, think in multiple languages, and grow with 21st-century skills.",
+    "signature": "Bilmont School · Bishkek"
+  },
+  "contact": {
+    "tag": "Get in touch",
+    "title": "Let's build Bishkek's best school together.",
+    "sub": "Would you like to be one of Bilmont's founding families? Write to us — every meeting takes no more than 30 minutes.",
+    "email": "admission@bilmont.kg",
+    "phone": "+996 XXX XXX XXX",
+    "site": "www.bilmont.kg",
+    "address": "Bishkek, Kyrgyzstan",
+    "emailLabel": "Email",
+    "phoneLabel": "Phone",
+    "siteLabel": "Website",
+    "addressLabel": "Address",
+    "cta": "Apply now"
+  },
+  "footer": {
+    "tagline": "A school where children grow up confident.",
+    "nav": "Navigation",
+    "contacts": "Contacts",
+    "rights": "All rights reserved."
+  }
+}

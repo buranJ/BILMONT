@@ -1,0 +1,5 @@
+# Drop mentor and interior photos here.
+# Expected filenames (referenced in the code):
+#   mentor-1.jpg … mentor-6.jpg   (Hero slider portraits)
+#   feature-1.jpg, feature-2.jpg  (FeatureGrid photo tiles)
+# Missing files degrade gracefully to coloured placeholders.
