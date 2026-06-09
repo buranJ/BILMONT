@@ -15,10 +15,10 @@ export default function Hero() {
     <section id="top" className="relative overflow-hidden pt-12">
       <div className="mx-auto max-w-container px-6 text-center">
         {/* Tag badge */}
-        <span className="inline-flex items-center gap-2 rounded-full border border-dark/10 bg-white/40 px-3 py-1 text-xs font-medium text-muted">
+        {/* <span className="inline-flex items-center gap-2 rounded-full border border-dark/10 bg-white/40 px-3 py-1 text-xs font-medium text-muted">
           <span className="h-1.5 w-1.5 rounded-full bg-green" />
           {t('hero.tag')}
-        </span>
+        </span> */}
 
         {/* Headline */}
         <h1 className="mx-auto mt-6 max-w-3xl font-serif leading-[1.05] text-dark">
