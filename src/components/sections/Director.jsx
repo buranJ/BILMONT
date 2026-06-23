@@ -29,7 +29,7 @@ export default function Director() {
                   src="/assets/images/dir.jpg"
                   alt={t('director.name')}
                   onError={() => setFailed(true)}
-                  className="h-full w-full object-cover"
+                  className="h-[104%] w-full object-cover"
                 />
               ) : (
                 <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-green-light to-green-dark">
@@ -49,9 +49,9 @@ export default function Director() {
             </div>
 
             {/* Floating badge */}
-            <span className="absolute -left-4 top-6 rounded-full bg-dark px-4 py-2 text-xs font-medium text-cream shadow-lg">
-              {t('director.tag')}
-            </span>
+            {/* <span className="absolute -left-4 top-6 rounded-full bg-dark px-4 py-2 text-xs font-medium text-cream shadow-lg">
+             {t('director.tag')} 
+            </span> */}
           </div>
 
           {/* Quote + bio */}

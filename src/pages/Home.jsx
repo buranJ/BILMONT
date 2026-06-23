@@ -6,6 +6,9 @@ import LearningSystem from "../components/sections/LearningSystem.jsx";
 import Director from "../components/sections/Director.jsx";
 import Interior from "../components/sections/Interior.jsx";
 import Contact from "../components/sections/Contact.jsx";
+import Map from "../components/sections/Map.jsx";
+import Stem from "../components/sections/Stem.jsx";
+import Promo from "../components/sections/Promo.jsx";
 
 /**
  * Landing page. Section order:
@@ -18,11 +21,14 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
+        <Promo />
         <FeatureGrid />
         <LearningSystem />
+        <Stem />
         <Director />
         <Interior />
         <Contact />
+        <Map />
       </main>
       <Footer />
     </div>

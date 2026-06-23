@@ -57,8 +57,8 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="https://www.bilmont.kg" className="hover:text-green">
-                  www.bilmont.kg
+                <a href="https://www.bilmont.school" className="hover:text-green">
+                  www.bilmont.school
                 </a>
               </li>
               <li>Bishkek, Kyrgyzstan</li>
@@ -66,11 +66,11 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-start justify-between gap-2 border-t border-dark/5 pt-6 text-xs text-muted sm:flex-row sm:items-center">
-          <span>
+        <div className="mt-12 flex flex-col items-start justify-center gap-2 border-t border-dark/5 pt-6 text-xs text-muted sm:flex-row sm:items-center">
+          {/* <span>
             © {new Date().getFullYear()} Nawrec Edtech OÜ. {t('footer.rights')}
-          </span>
-          <span>{t('footer.tagline')}</span>
+          </span> */}
+          <span className="text-center">{t('footer.tagline')}</span>
         </div>
       </div>
     </footer>

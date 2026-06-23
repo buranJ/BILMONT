@@ -10,6 +10,11 @@ export default {
           light: '#7A9E3A',
           dark: '#3D5A1A',
         },
+        rust: {
+          DEFAULT: '#853b20',
+          light: '#A04D2A',
+          dark: '#6B2F18',
+        },
         navy: '#2A4A5A',
         dark: '#1A1A1A',
         muted: '#6B6B6B',

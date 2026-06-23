@@ -1,6 +1,6 @@
-import { useTranslation } from 'react-i18next'
-import Button from '../ui/Button.jsx'
-import CurvedShowcase from './CurvedShowcase.jsx'
+import { useTranslation } from "react-i18next";
+import Button from "../ui/Button.jsx";
+import CurvedShowcase from "./CurvedShowcase.jsx";
 
 /**
  * Hero block: tag badge, two-line serif headline, subtitle, CTAs,
@@ -8,8 +8,8 @@ import CurvedShowcase from './CurvedShowcase.jsx'
  * to mirror the Flowblox hero.
  */
 export default function Hero() {
-  const { t } = useTranslation()
-  const stats = t('stats', { returnObjects: true })
+  const { t } = useTranslation();
+  const stats = t("stats", { returnObjects: true });
 
   return (
     <section id="top" className="relative overflow-hidden pt-12">
@@ -23,25 +23,25 @@ export default function Hero() {
         {/* Headline */}
         <h1 className="mx-auto mt-6 max-w-3xl font-serif leading-[1.05] text-dark">
           <span className="block text-4xl font-normal italic md:text-5xl">
-            {t('hero.h1_italic')}
+            {t("hero.h1_italic")}
           </span>
           <span className="mt-1 block text-5xl font-bold md:text-6xl">
-            {t('hero.h1_bold')}
+            {/* {t('hero.h1_bold')} */}
           </span>
         </h1>
 
         {/* Subtitle */}
         <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-muted">
-          {t('hero.sub')}
+          {t("hero.sub")}
         </p>
 
         {/* CTAs */}
         <div className="mt-8 flex items-center justify-center gap-3">
           <Button arrow href="#contact">
-            {t('hero.cta')}
+            {t("hero.cta")}
           </Button>
           <Button variant="outline" href="#features">
-            {t('hero.cta2')}
+            {t("hero.cta2")}
           </Button>
         </div>
       </div>
@@ -52,8 +52,8 @@ export default function Hero() {
       </div>
 
       {/* Stats bar */}
-      <div className="mx-auto mt-12 max-w-container px-6">
-        <div className="grid grid-cols-2 gap-6 border-t border-dark/5 pt-10 md:grid-cols-4">
+      <div className="mx-auto mt-12 max-w-container px-6 ">
+        <div className="grid grid-cols-2 gap-6 border-t border-dark/5 pt-10 md:grid-cols-3">
           {stats.map((s, i) => (
             <div key={i} className="text-center">
               <p className="font-serif text-3xl font-bold text-dark md:text-4xl">
@@ -64,6 +64,7 @@ export default function Hero() {
           ))}
         </div>
       </div>
+    
     </section>
-  )
+  );
 }
