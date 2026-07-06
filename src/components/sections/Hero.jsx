@@ -12,7 +12,7 @@ export default function Hero() {
   const stats = t("stats", { returnObjects: true });
 
   return (
-    <section id="top" className="relative overflow-hidden pt-12">
+    <section id="top" className="relative overflow-hidden pt-4">
       <div className="mx-auto max-w-container px-6 text-center">
         {/* Tag badge */}
         {/* <span className="inline-flex items-center gap-2 rounded-full border border-dark/10 bg-white/40 px-3 py-1 text-xs font-medium text-muted">
@@ -47,19 +47,26 @@ export default function Hero() {
       </div>
 
       {/* Coverflow slider */}
-      <div className="mt-16">
+      <div className="">
         <CurvedShowcase />
       </div>
 
       {/* Stats bar */}
-      <div className="mx-auto mt-12 max-w-container px-6 ">
-        <div className="grid grid-cols-2 gap-6 border-t border-dark/5 pt-10 md:grid-cols-3">
+      <div className="mx-auto mt-22 max-w-container px-6 ">
+        <div className="mx-auto grid max-w-2xl grid-cols-3 border-t border-dark/5 pt-10">
           {stats.map((s, i) => (
-            <div key={i} className="text-center">
-              <p className="font-serif text-3xl font-bold text-dark md:text-4xl">
+            <div
+              key={i}
+              className={`px-2 text-center sm:px-4 ${
+                i > 0 ? 'border-l border-dark/10' : ''
+              }`}
+            >
+              <p className="font-serif text-2xl font-bold leading-none tracking-tight text-dark sm:text-3xl md:text-4xl">
                 {s.value}
               </p>
-              <p className="mt-1 text-sm text-muted">{s.label}</p>
+              <p className="mt-2 text-xs leading-tight text-muted sm:text-sm">
+                {s.label}
+              </p>
             </div>
           ))}
         </div>

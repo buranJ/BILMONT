@@ -131,7 +131,7 @@ export default function CurvedShowcase() {
       </div>
 
       {/* Three-column highlight strip */}
-      <div className="mt-12">
+      <div className="mt-32">
         <Highlights />
       </div>
     </section>

@@ -26,10 +26,10 @@ export default function Promo() {
   const items = t('promo.cards', { returnObjects: true })
 
   return (
-    <section id="promo" className="py-24">
-      <div className="mx-auto max-w-container px-6">
+    <section id="promo" className="py-14 md:py-24 ">
+      <div className="mx-auto max-w-container px-6 mt-10">
         {/* Header */}
-        <div className="max-w-xl">
+        <div className="max-w-xl ">
           <span className="inline-flex items-center gap-2 rounded-full border border-green/30 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-green">
             <span className="h-1.5 w-1.5 rounded-full bg-green" />
             {t('promo.tag')}

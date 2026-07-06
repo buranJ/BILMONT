@@ -39,25 +39,75 @@ function useReveal() {
 const PHOTO_MASK =
   'radial-gradient(ellipse 60% 72% at 50% 44%, #000 58%, rgba(0,0,0,0) 100%)'
 
+/** Mobile variant: same feathered sides, but the lower third dissolves fully so
+ *  the figure appears to emerge from — and melt into — the cards beneath it. */
+const PHOTO_MASK_MOBILE = {
+  WebkitMaskImage: `${PHOTO_MASK}, linear-gradient(to bottom, #000 52%, rgba(0,0,0,0) 88%)`,
+  maskImage: `${PHOTO_MASK}, linear-gradient(to bottom, #000 52%, rgba(0,0,0,0) 88%)`,
+  WebkitMaskComposite: 'source-in',
+  maskComposite: 'intersect',
+}
+
 /** Accent dot colour per feature card on mobile (project palette). */
 const MOBILE_ACCENTS = ['#2A4A5A', '#5A7A2A', '#853b20', '#C99A00']
 
-/** A single minimalist feature: title + description, no card, no icon.
- *  `align` controls text alignment; reveal slides it in from `side`. */
-function Feature({ title, desc, align, side, shown, delay = 0 }) {
+/** Thin connector line with an arrowhead that reaches from the portrait toward
+ *  a feature text. `flip` mirrors it for the right-hand column. */
+function Connector({ flip }) {
   return (
-    <div
-      className={`transition-all duration-700 ease-out ${align} ${
-        shown
-          ? 'translate-x-0 opacity-100'
-          : `${side === 'left' ? '-translate-x-8' : 'translate-x-8'} opacity-0`
-      }`}
-      style={{ transitionDelay: `${delay}ms` }}
+    <svg
+      className="mt-3 hidden shrink-0 text-dark/25 lg:block"
+      width="72"
+      height="12"
+      viewBox="0 0 72 12"
+      fill="none"
+      style={{ transform: flip ? 'scaleX(-1) rotate(-9deg)' : 'rotate(-9deg)' }}
+      aria-hidden="true"
     >
+      <line x1="6" y1="6" x2="72" y2="6" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" />
+      <path d="M14 2 L6 6 L14 10" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  )
+}
+
+/** A single minimalist feature: title + description flanked by a connector that
+ *  points back to the portrait. `side` sets which column it belongs to; `offset`
+ *  nudges it toward/away from the centre for a staggered layout. */
+function Feature({ title, desc, side, shown, delay = 0, offset = 0 }) {
+  const isLeft = side === 'left'
+  const text = (
+    <div className={`w-52 shrink-0 ${isLeft ? 'text-right' : 'text-left'}`}>
       <h3 className="font-serif text-xl font-semibold leading-snug text-dark">
         {title}
       </h3>
       <p className="mt-2 text-sm leading-relaxed text-muted">{desc}</p>
+    </div>
+  )
+  return (
+    <div
+      className={`flex items-start gap-4 transition-all duration-700 ease-out ${
+        isLeft ? 'justify-end' : 'justify-start'
+      } ${
+        shown
+          ? 'translate-x-0 opacity-100'
+          : `${isLeft ? '-translate-x-8' : 'translate-x-8'} opacity-0`
+      }`}
+      style={{
+        transitionDelay: `${delay}ms`,
+        [isLeft ? 'marginRight' : 'marginLeft']: `${offset}px`,
+      }}
+    >
+      {isLeft ? (
+        <>
+          {text}
+          <Connector />
+        </>
+      ) : (
+        <>
+          <Connector flip />
+          {text}
+        </>
+      )}
     </div>
   )
 }
@@ -73,7 +123,7 @@ export default function FeatureGrid() {
   const [revealRef, shown] = useReveal()
 
   return (
-    <section id="features" ref={revealRef} className="py-24">
+    <section id="features" ref={revealRef} className="py-14 md:py-24">
       <div className="mx-auto max-w-container px-6">
         {/* Section heading */}
         <div className="mx-auto max-w-2xl text-center">
@@ -86,11 +136,11 @@ export default function FeatureGrid() {
         </div>
 
         {/* ── DESKTOP: text · portrait · text ── */}
-        <div className="mt-12 hidden grid-cols-[1fr_minmax(460px,640px)_1fr] items-center gap-10 lg:grid xl:gap-16">
-          {/* Left column */}
-          <div className="flex flex-col gap-16 text-right">
-            <Feature title={items[0].title} desc={items[0].desc} align="text-right" side="left" shown={shown} delay={150} />
-            <Feature title={items[1].title} desc={items[1].desc} align="text-right" side="left" shown={shown} delay={300} />
+        <div className="mt-12 hidden grid-cols-[1fr_minmax(380px,520px)_1fr] items-center gap-8 lg:grid xl:gap-12">
+          {/* Left column — staggered: top sits closer, bottom further out */}
+          <div className="flex flex-col gap-16">
+            <Feature title={items[0].title} desc={items[0].desc} side="left" shown={shown} delay={150} offset={0} />
+            <Feature title={items[1].title} desc={items[1].desc} side="left" shown={shown} delay={300} offset={40} />
           </div>
 
           {/* Portrait */}
@@ -106,19 +156,19 @@ export default function FeatureGrid() {
             <img
               src="/assets/images/m.png"
               alt=""
-              className="mx-auto w-full max-w-[620px] object-contain"
+              className="mx-auto w-full max-w-[520px] object-contain"
               style={{ WebkitMaskImage: PHOTO_MASK, maskImage: PHOTO_MASK }}
             />
           </div>
 
-          {/* Right column */}
-          <div className="flex flex-col gap-16 text-left">
-            <Feature title={items[2].title} desc={items[2].desc} align="text-left" side="right" shown={shown} delay={225} />
-            <Feature title={items[3].title} desc={items[3].desc} align="text-left" side="right" shown={shown} delay={375} />
+          {/* Right column — staggered opposite to the left for a zigzag */}
+          <div className="flex flex-col gap-16">
+            <Feature title={items[2].title} desc={items[2].desc} side="right" shown={shown} delay={225} offset={40} />
+            <Feature title={items[3].title} desc={items[3].desc} side="right" shown={shown} delay={375} offset={0} />
           </div>
         </div>
 
-        {/* ── MOBILE / TABLET: portrait on top, neat cards below ── */}
+        {/* ── MOBILE / TABLET: portrait melts into the cards below ── */}
         <div className="mt-8 lg:hidden">
           <div
             className={`relative transition-all duration-1000 ease-out ${
@@ -128,12 +178,13 @@ export default function FeatureGrid() {
             <img
               src="/assets/images/m.png"
               alt=""
-              className="mx-auto max-h-[480px] w-full max-w-[420px] object-contain"
-              style={{ WebkitMaskImage: PHOTO_MASK, maskImage: PHOTO_MASK }}
+              className="mx-auto w-full max-w-[420px] object-contain"
+              style={PHOTO_MASK_MOBILE}
             />
           </div>
 
-          <div className="mx-auto mt-8 max-w-md space-y-4">
+          {/* Pulled up so the dissolving figure appears to rise out of the cards */}
+          <div className="relative z-10 mx-auto -mt-16 max-w-md space-y-4">
             {items.map((item, i) => (
               <div
                 key={i}

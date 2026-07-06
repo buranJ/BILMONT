@@ -18,11 +18,7 @@ export default function Map() {
   return (
     <section id="location" className="px-6 pb-24">
       <div className="mx-auto max-w-container">
-        <div className="relative overflow-hidden rounded-[36px] bg-green">
-          {/* Decorative blobs */}
-          <div className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-green-light/30 blur-3xl" />
-          <div className="pointer-events-none absolute -bottom-16 left-10 h-56 w-56 rounded-full bg-green-dark/50 blur-3xl" />
-
+        <div className="relative overflow-hidden rounded-[36px] bg-[rgb(133,59,32)]">
           <div className="relative grid grid-cols-1 md:grid-cols-[1fr_1.6fr]">
             {/* Left: info panel */}
             <div className="flex flex-col justify-center px-8 py-14 md:px-12">

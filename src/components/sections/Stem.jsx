@@ -66,7 +66,7 @@ export default function Stem() {
   }
 
   return (
-    <section id="stem" className="py-24">
+    <section id="stem" className="py-14 md:py-24">
       {/* Header */}
       <div className="mx-auto max-w-container px-6">
         <div className="max-w-2xl">

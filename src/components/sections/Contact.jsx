@@ -61,10 +61,6 @@ export default function Contact() {
     <section id="contact" className="px-6 pb-24">
       <div className="mx-auto max-w-container">
         <div className="relative overflow-hidden rounded-[36px] bg-green px-8 py-16 text-cream md:px-16">
-          {/* Decorative blobs */}
-          <div className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-green-light/40 blur-2xl" />
-          <div className="pointer-events-none absolute -bottom-20 -left-10 h-64 w-64 rounded-full bg-green-dark/40 blur-2xl" />
-
           <div className="relative grid grid-cols-1 gap-12 md:grid-cols-2 md:items-center">
             {/* Left: copy + form */}
             <div>

@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import Logo from '../ui/Logo.jsx'
 import Button from '../ui/Button.jsx'
 import LangSwitcher from '../ui/LangSwitcher.jsx'
 
@@ -35,7 +34,7 @@ export default function Header() {
       <div className="mx-auto flex h-[72px] max-w-container items-center justify-between px-6">
         {/* Left: brand */}
         <a href="#top" className="flex items-center gap-2">
-          <Logo size={26} />
+          <img src="/logo.png" alt="" className="h-[36px] w-auto" />
           <span className="font-serif text-lg font-semibold tracking-tight text-dark">
             {t('brand')}
           </span>

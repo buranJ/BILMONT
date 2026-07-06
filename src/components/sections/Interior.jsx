@@ -3,26 +3,36 @@ import { useTranslation } from 'react-i18next'
 /**
  * Interior gallery — a warm editorial mosaic of the school's spaces.
  *
- * Six photos (d-1.jpg … d-6.jpg) are laid out on a 12-column grid with
- * varied spans that tile without gaps, each with a soft hover zoom.
- * Falls back gracefully if an image is missing.
+ * Ten photos are laid out on a 12-column grid with balanced spans that tile
+ * seamlessly across five rows, each with a soft hover zoom. No cell is extreme
+ * in aspect, so `object-cover` crops stay gentle. Falls back gracefully if an
+ * image is missing.
+ *
+ * Row map (12 cols):
+ *   1: [ d-1  8×2 ][ d-2 4 ]      3: [ d-4 4 ][ d-5 4×2 ][ d-6 4×2 ]
+ *   2:            [ d-3 4 ]       4: [ d-7 4 ]
+ *   5: [ d-8 4 ][ d-9 4 ][ d-10 4 ]
  */
 
-// [src, span classes] — spans tile the 12-col / 2-row blocks seamlessly.
+// [src, span classes]
 const PHOTOS = [
-  ['d-1.jpg', 'sm:col-span-8 sm:row-span-2'],
+  ['d-10.png', 'sm:col-span-8 sm:row-span-2'],
   ['d-2.jpg', 'sm:col-span-4'],
   ['d-3.jpg', 'sm:col-span-4'],
-  ['d-4.jpg', 'sm:col-span-4 sm:row-span-2'],
-  ['d-5.jpg', 'sm:col-span-8'],
-  ['d-6.jpg', 'sm:col-span-8'],
+  ['d-4.jpg', 'sm:col-span-4'],
+  ['d-5.jpg', 'sm:col-span-4 sm:row-span-2'],
+  ['d-6.jpg', 'sm:col-span-4 sm:row-span-2'],
+  ['d-7.jpg', 'sm:col-span-4'],
+  ['d-8.jpg', 'sm:col-span-4'],
+  ['d-9.jpg', 'sm:col-span-4'],
+  ['d-1.jpg', 'sm:col-span-4'],
 ]
 
 export default function Interior() {
   const { t } = useTranslation()
 
   return (
-    <section id="interior" className="py-24">
+    <section id="interior" className="py-14 md:py-24">
       <div className="mx-auto max-w-container px-6">
         {/* Heading — editorial, left-aligned */}
         <div className="max-w-2xl">
@@ -39,7 +49,7 @@ export default function Interior() {
         </div>
 
         {/* Mosaic */}
-        <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-12 sm:auto-rows-[190px]">
+        <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-12 sm:auto-rows-[230px]">
           {PHOTOS.map(([file, span], i) => (
             <figure
               key={file}

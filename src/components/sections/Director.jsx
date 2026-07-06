@@ -15,7 +15,7 @@ export default function Director() {
   const [failed, setFailed] = useState(false)
 
   return (
-    <section id="director" className="py-24">
+    <section id="director" className="py-14 md:py-24">
       <div className="mx-auto max-w-container px-6">
         <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2">
           {/* Portrait */}

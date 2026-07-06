@@ -104,20 +104,25 @@ export default function LearningSystem() {
   const languages = t('learning.languages', { returnObjects: true })
 
   return (
-    <section id="model" className="py-24">
+    <section id="model" className="py-14 md:py-24">
       <div className="mx-auto max-w-container px-6">
-        {/* Heading — left-aligned, editorial */}
-        <div className="max-w-2xl">
-          <span className="inline-flex items-center gap-2 rounded-full bg-green px-3 py-1 text-xs font-medium text-cream">
-            {t('learning.tag')}
-          </span>
-          <h2 className="mt-5 flex items-start gap-4 font-serif text-3xl font-bold leading-tight text-dark md:text-[2.6rem]">
-            <span className="mt-2 hidden h-10 w-1.5 shrink-0 rounded-full bg-green sm:block" />
-            <span>{t('learning.title')}</span>
-          </h2>
-          <p className="mt-4 max-w-xl text-base leading-relaxed text-muted sm:pl-[2.375rem]">
-            {t('learning.sub')}
-          </p>
+        {/* Heading in a brand-brown block. On desktop it slides up under the
+            FeatureGrid portrait so the girl appears to rise out of the block;
+            the block (later in the DOM) paints over her lower body while her
+            upper body stays above its top edge. */}
+        <div className="relative z-0 overflow-hidden rounded-[36px] bg-[rgb(133,59,32)] px-6 py-8 sm:px-10 lg:-mt-56 lg:px-14 lg:pb-12 lg:pt-28">
+          <div className="max-w-2xl">
+            <span className="inline-flex items-center gap-2 rounded-full bg-cream/15 px-3 py-1 text-xs font-medium text-cream ring-1 ring-cream/25">
+              {t('learning.tag')}
+            </span>
+            <h2 className="mt-5 flex items-start gap-4 font-serif text-3xl font-bold leading-tight text-cream md:text-[2.6rem]">
+              <span className="mt-2 hidden h-10 w-1.5 shrink-0 rounded-full bg-cream/50 sm:block" />
+              <span>{t('learning.title')}</span>
+            </h2>
+            <p className="mt-4 max-w-xl text-base leading-relaxed text-cream/75 sm:pl-[2.375rem]">
+              {t('learning.sub')}
+            </p>
+          </div>
         </div>
 
         {/* Three pillars — numbered cards */}
