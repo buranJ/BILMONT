@@ -1,5 +1,6 @@
 import Header from "../components/layout/Header.jsx";
 import Footer from "../components/layout/Footer.jsx";
+import FloatingContacts from "../components/layout/FloatingContacts.jsx";
 import Hero from "../components/sections/Hero.jsx";
 import FeatureGrid from "../components/sections/FeatureGrid.jsx";
 import LearningSystem from "../components/sections/LearningSystem.jsx";
@@ -31,6 +32,7 @@ export default function Home() {
         <Map />
       </main>
       <Footer />
+      <FloatingContacts />
     </div>
   );
 }

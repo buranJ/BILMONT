@@ -2,11 +2,11 @@ import { useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 const stages = [
-  { key: 'g12',  color: '#5A7A2A', img: '/assets/images/a-1.jpg' },
-  { key: 'g34',  color: '#853b20', img: '/assets/images/a-2.jpg' },
-  { key: 'g56',  color: '#5A7A2A', img: '/assets/images/a-3.jpg' },
-  { key: 'g78',  color: '#853b20', img: '/assets/images/a-4.jpg' },
-  { key: 'g911', color: '#5A7A2A', img: '/assets/images/a-5.jpg' },
+  { key: 'g12',  color: '#5A7A2A', img: '/assets/images/a-1.webp' },
+  { key: 'g34',  color: '#853b20', img: '/assets/images/a-2.webp' },
+  { key: 'g56',  color: '#5A7A2A', img: '/assets/images/a-3.webp' },
+  { key: 'g78',  color: '#853b20', img: '/assets/images/a-4.webp' },
+  { key: 'g911', color: '#5A7A2A', img: '/assets/images/a-5.webp' },
 ]
 
 export default function Stem() {
@@ -112,6 +112,8 @@ export default function Stem() {
               <img
                 src={s.img}
                 alt={item.name}
+                loading="lazy"
+                decoding="async"
                 className="absolute inset-0 h-full w-full object-cover"
               />
               <div
@@ -222,6 +224,8 @@ export default function Stem() {
               <img
                 src={s.img}
                 alt={item.name}
+                loading="lazy"
+                decoding="async"
                 draggable={false}
                 className="absolute inset-0 h-full w-full object-cover"
               />

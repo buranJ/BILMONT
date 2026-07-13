@@ -16,16 +16,16 @@ import { useTranslation } from 'react-i18next'
 
 // [src, span classes]
 const PHOTOS = [
-  ['d-10.png', 'sm:col-span-8 sm:row-span-2'],
-  ['d-2.jpg', 'sm:col-span-4'],
-  ['d-3.jpg', 'sm:col-span-4'],
-  ['d-4.jpg', 'sm:col-span-4'],
-  ['d-5.jpg', 'sm:col-span-4 sm:row-span-2'],
-  ['d-6.jpg', 'sm:col-span-4 sm:row-span-2'],
-  ['d-7.jpg', 'sm:col-span-4'],
-  ['d-8.jpg', 'sm:col-span-4'],
-  ['d-9.jpg', 'sm:col-span-4'],
-  ['d-1.jpg', 'sm:col-span-4'],
+  ['d-10.webp', 'sm:col-span-8 sm:row-span-2'],
+  ['d-2.webp', 'sm:col-span-4'],
+  ['d-3.webp', 'sm:col-span-4'],
+  ['d-4.webp', 'sm:col-span-4'],
+  ['d-5.webp', 'sm:col-span-4 sm:row-span-2'],
+  ['d-6.webp', 'sm:col-span-4 sm:row-span-2'],
+  ['d-7.webp', 'sm:col-span-4'],
+  ['d-8.webp', 'sm:col-span-4'],
+  ['d-9.webp', 'sm:col-span-4'],
+  ['d-1.webp', 'sm:col-span-4'],
 ]
 
 export default function Interior() {

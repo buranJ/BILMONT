@@ -26,8 +26,10 @@ export default function Director() {
             <div className="relative aspect-[3/4] overflow-hidden rounded-[32px] bg-green">
               {!failed ? (
                 <img
-                  src="/assets/images/dir.jpg"
+                  src="/assets/images/dir.webp"
                   alt={t('director.name')}
+                  loading="lazy"
+                  decoding="async"
                   onError={() => setFailed(true)}
                   className="h-[104%] w-full object-cover"
                 />

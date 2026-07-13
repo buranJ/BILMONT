@@ -18,6 +18,8 @@ function MentorCard({ mentor }) {
         <img
           src={mentor.img}
           alt={mentor.name}
+          loading="lazy"
+          decoding="async"
           onError={() => setFailed(true)}
           className="h-full w-full object-cover"
         />

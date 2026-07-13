@@ -154,8 +154,12 @@ export default function FeatureGrid() {
               style={{ background: 'radial-gradient(ellipse 55% 60% at 50% 45%, rgba(255,255,255,0.7), transparent 72%)' }}
             />
             <img
-              src="/assets/images/m.png"
+              src="/assets/images/m.webp"
               alt=""
+              loading="lazy"
+              decoding="async"
+              width="1040"
+              height="1923"
               className="mx-auto w-full max-w-[520px] object-contain"
               style={{ WebkitMaskImage: PHOTO_MASK, maskImage: PHOTO_MASK }}
             />
@@ -176,8 +180,12 @@ export default function FeatureGrid() {
             }`}
           >
             <img
-              src="/assets/images/m.png"
+              src="/assets/images/m.webp"
               alt=""
+              loading="lazy"
+              decoding="async"
+              width="1040"
+              height="1923"
               className="mx-auto w-full max-w-[420px] object-contain"
               style={PHOTO_MASK_MOBILE}
             />
