@@ -44,7 +44,7 @@ export default function FloatingContacts() {
     {
       key: 'telegram',
       label: t('contact.telegramLabel'),
-      href: `https://t.me/${telegram.replace(/^@/, '')}`,
+      href: `https://t.me/+${telegram.replace(/\D/g, '')}`,
       icon: <TelegramIcon />,
       color: '#229ED9',
       external: true,

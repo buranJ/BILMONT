@@ -125,9 +125,9 @@
     "title": "Let's build Bishkek's best school together.",
     "sub": "Would you like to be one of Bilmont's founding families? Write to us — every meeting takes no more than 30 minutes.",
     "email": "admission@bilmont.kg",
-    "phone": "+996 XXX XXX XXX",
-    "whatsapp": "+996 XXX XXX XXX",
-    "telegram": "@bilmont_school",
+    "phone": "+996 501 323 635",
+    "whatsapp": "+996 554 201 506",
+    "telegram": "+996 501 323 635",
     "site": "www.bilmont.school",
     "address": "Bishkek, Kyrgyzstan",
     "emailLabel": "Email",
@@ -204,6 +204,7 @@
     "tagline": "A school where children grow up confident.",
     "nav": "Navigation",
     "contacts": "Contacts",
-    "rights": "All rights reserved."
+    "rights": "All rights reserved.",
+    "credit": "Developed by"
   }
 }

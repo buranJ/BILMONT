@@ -152,6 +152,7 @@ export default function Stem() {
           {stages.map((s, i) => (
             <button
               key={i}
+              aria-label={items[i].grade}
               onClick={() => mobileScroll(i - mobileIdx)}
               className="h-1.5 rounded-full transition-all duration-300"
               style={{
@@ -167,6 +168,7 @@ export default function Stem() {
           <button
             onClick={() => mobileScroll(-1)}
             disabled={mobileIdx === 0}
+            aria-label="←"
             className="flex h-10 w-10 items-center justify-center rounded-full border border-dark/15 bg-white shadow-sm transition disabled:opacity-30"
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
@@ -176,6 +178,7 @@ export default function Stem() {
           <button
             onClick={() => mobileScroll(1)}
             disabled={mobileIdx === stages.length - 1}
+            aria-label="→"
             className="flex h-10 w-10 items-center justify-center rounded-full border border-dark/15 bg-white shadow-sm transition disabled:opacity-30"
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">

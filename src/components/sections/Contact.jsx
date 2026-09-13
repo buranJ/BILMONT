@@ -13,6 +13,12 @@ const WhatsAppIcon = () => (
   </svg>
 )
 
+const TelegramIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+    <path d="M21.94 4.3 19.2 19.1c-.2 1.1-.86 1.37-1.74.85l-4.8-3.54-2.32 2.24c-.26.26-.47.47-.96.47l.34-4.9 8.9-8.04c.39-.34-.08-.53-.6-.19L6.99 12.9 2.25 11.4c-1.03-.32-1.05-1.03.22-1.52l18.2-7.02c.86-.31 1.61.2 1.27 1.44z" fill="currentColor" />
+  </svg>
+)
+
 const SHEET_URL = import.meta.env.VITE_SHEET_URL || ''
 
 export default function Contact() {
@@ -47,6 +53,13 @@ export default function Contact() {
       label: t('contact.whatsappLabel'),
       value: t('contact.whatsapp'),
       href: `https://wa.me/${t('contact.whatsapp').replace(/\D/g, '')}`,
+    },
+    {
+      key: 'telegram',
+      icon: <TelegramIcon />,
+      label: t('contact.telegramLabel'),
+      value: t('contact.telegram'),
+      href: `https://t.me/+${t('contact.telegram').replace(/\D/g, '')}`,
     },
     {
       key: 'phone',

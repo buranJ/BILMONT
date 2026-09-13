@@ -7,8 +7,8 @@ import { useTranslation } from 'react-i18next'
  *    overlapping name plate and a floating "founder" badge
  *  - right: oversized serif pull-quote, short bio, and a signature line
  *
- * The portrait reads from /assets/images/director.jpg and degrades to a
- * monogram placeholder until the real photo is dropped in.
+ * The portrait reads from /assets/images/dir.webp and degrades to a
+ * monogram placeholder if it fails to load.
  */
 export default function Director() {
   const { t } = useTranslation()

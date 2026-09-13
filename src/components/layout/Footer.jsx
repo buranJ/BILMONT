@@ -61,17 +61,37 @@ export default function Footer() {
                   www.bilmont.school
                 </a>
               </li>
-              <li>Bishkek, Kyrgyzstan</li>
+              <li>
+                <a
+                  href="https://go.2gis.com/hd4aP"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-green"
+                >
+                  {t('map.fullAddress')}
+                </a>
+              </li>
             </ul>
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-start justify-center gap-2 border-t border-dark/5 pt-6 text-xs text-muted sm:flex-row sm:items-center">
-          {/* <span>
+        {/* <div className="mt-12 flex flex-col items-start justify-center gap-2 border-t border-dark/5 pt-6 text-xs text-muted sm:flex-row sm:items-center">
+          <span>
             © {new Date().getFullYear()} Nawrec Edtech OÜ. {t('footer.rights')}
-          </span> */}
-          <span className="text-center">{t('footer.tagline')}</span>
-        </div>
+          </span>
+        </div> */}
+
+        <p className="mt-12 text-center text-[11px] text-muted/50">
+          {t('footer.credit')}{' '}
+          <a
+            href="https://itdos.dev"
+            target="_blank"
+            rel="noopener"
+            className="transition-colors hover:text-muted"
+          >
+            itdos.dev
+          </a>
+        </p>
       </div>
     </footer>
   )

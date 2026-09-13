@@ -155,6 +155,8 @@ export default function FeatureGrid() {
             />
             <img
               src="/assets/images/m.webp"
+              srcSet="/assets/images/m-640.webp 640w, /assets/images/m.webp 1040w"
+              sizes="520px"
               alt=""
               loading="lazy"
               decoding="async"
@@ -181,6 +183,8 @@ export default function FeatureGrid() {
           >
             <img
               src="/assets/images/m.webp"
+              srcSet="/assets/images/m-640.webp 640w, /assets/images/m.webp 1040w"
+              sizes="(min-width: 468px) 420px, calc(100vw - 48px)"
               alt=""
               loading="lazy"
               decoding="async"

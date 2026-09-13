@@ -20,20 +20,11 @@ export default {
         muted: '#6B6B6B',
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        serif: ['"Playfair Display"', 'Georgia', 'serif'],
+        sans: ['"Inter Variable"', 'Inter', 'system-ui', 'sans-serif'],
+        serif: ['"Playfair Display Variable"', '"Playfair Display"', 'Georgia', 'serif'],
       },
       maxWidth: {
         container: '1200px',
-      },
-      keyframes: {
-        scrollLeft: {
-          '0%': { transform: 'translateX(0)' },
-          '100%': { transform: 'translateX(-33.333%)' },
-        },
-      },
-      animation: {
-        scrollLeft: 'scrollLeft 40s linear infinite',
       },
     },
   },

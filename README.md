@@ -10,9 +10,9 @@
 
 - **React 18** + **Vite**
 - **Tailwind CSS v3**
-- **React Router v6** (под будущие страницы)
 - **i18next** + **react-i18next** (KG / RU / EN)
-- Google Fonts: Playfair Display + Inter
+- Шрифты Playfair Display + Inter — self-hosted через `@fontsource-variable`
+- Деплой — Netlify (`netlify.toml`)
 
 ## Запуск
 
@@ -39,7 +39,7 @@ bilmont-site/
 │   ├── components/
 │   │   ├── layout/           # Header, Footer
 │   │   ├── ui/               # Button, Logo, LangSwitcher
-│   │   └── sections/         # Hero, MentorSlider, FeatureGrid
+│   │   └── sections/         # Hero, CurvedShowcase, FeatureGrid, …
 │   ├── data/mentors.js       # данные слайдера
 │   ├── locales/              # ru.json · en.json · kg.json
 │   ├── pages/Home.jsx
@@ -66,12 +66,17 @@ bilmont-site/
 
 ## Фото
 
-Положите изображения в `public/assets/images/`:
+На сайте используются только сжатые WebP из `public/assets/images/`.
+Оригиналы в полном размере лежат в `.image-originals/` (в git не попадают).
 
-- `mentor-1.jpg … mentor-6.jpg` — портреты для слайдера Hero;
-- `feature-1.jpg`, `feature-2.jpg` — фото-плитки в сетке фич.
+Чтобы заменить или добавить фото:
 
-Пока файлов нет — слайдер и плитки показывают цветные заглушки, ничего не ломается.
+1. Положите оригинал в `.image-originals/` с тем же именем, что на сайте
+   (например `d-3.jpg` или `kids/2.png`).
+2. Запустите `npm run images` — скрипт пережмёт все фото в WebP нужного размера.
+
+Размеры задаются в `scripts/optimize-images.mjs`: фото детей — 420px,
+STEM и интерьер — 800px, директор — 900px.
 
 ## Локализация
 

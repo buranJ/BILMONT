@@ -30,9 +30,4 @@
       transparent 100%
     );
   }
-
-  /* Pause the infinite track on hover. */
-  .slider-track:hover {
-    animation-play-state: paused;
-  }
 }

@@ -26,7 +26,8 @@ function WallCard({ mentor, tone }) {
         <img
           src={mentor.img}
           alt={mentor.name}
-          loading="lazy"
+          width="420"
+          height="420"
           decoding="async"
           onError={() => setFailed(true)}
           className="h-full w-full object-cover"
@@ -72,36 +73,61 @@ export default function CurvedShowcase() {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
     // Width of one third of the track = one full mentor set.
-    const setWidth = (CARD_W + GAP) * mentors.length
+    const STEP = CARD_W + GAP
+    const setWidth = STEP * mentors.length
+    const cardsEl = Array.from(track.children)
     let pos = -setWidth // start mid-track so both edges are filled
-    let raf
+    let half = viewport.clientWidth / 2
+    let raf = 0
+    let visible = false
+
+    // Card centres are derived arithmetically (scale() never affects layout),
+    // so the loop never reads layout — no forced reflow on every frame.
+    const paint = () => {
+      track.style.transform = `translate3d(${pos}px, 0, 0)`
+      for (let i = 0; i < cardsEl.length; i++) {
+        const cardCenter = pos + i * STEP + CARD_W / 2
+        const dist = Math.min(Math.abs(cardCenter - half) / half, 1) // 0 centre → 1 edge
+        const scale = MIN_SCALE + (MAX_SCALE - MIN_SCALE) * dist
+        cardsEl[i].style.transform = `scale(${scale})`
+        cardsEl[i].style.zIndex = String(Math.round(dist * 10))
+      }
+    }
 
     const frame = () => {
-      if (!prefersReduced) {
-        pos -= SPEED
-        if (pos <= -setWidth * 2) pos += setWidth
-      }
-      track.style.transform = `translate3d(${pos}px, 0, 0)`
-
-      // Re-scale each card by its distance from the viewport centre.
-      const vpRect = viewport.getBoundingClientRect()
-      const centerX = vpRect.left + vpRect.width / 2
-      const half = vpRect.width / 2
-
-      for (const el of track.children) {
-        const r = el.getBoundingClientRect()
-        const cardCenter = r.left + r.width / 2
-        const dist = Math.min(Math.abs(cardCenter - centerX) / half, 1) // 0 centre → 1 edge
-        const scale = MIN_SCALE + (MAX_SCALE - MIN_SCALE) * dist
-        el.style.transform = `scale(${scale})`
-        el.style.zIndex = String(Math.round(dist * 10))
-      }
-
+      pos -= SPEED
+      if (pos <= -setWidth * 2) pos += setWidth
+      paint()
       raf = requestAnimationFrame(frame)
     }
 
-    raf = requestAnimationFrame(frame)
-    return () => cancelAnimationFrame(raf)
+    const start = () => {
+      if (!raf && visible && !prefersReduced) raf = requestAnimationFrame(frame)
+    }
+    const stop = () => {
+      cancelAnimationFrame(raf)
+      raf = 0
+    }
+
+    const resizeObs = new ResizeObserver(() => {
+      half = viewport.clientWidth / 2
+      paint()
+    })
+    resizeObs.observe(viewport)
+
+    // Only animate while the carousel is on screen.
+    const io = new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting
+      visible ? start() : stop()
+    })
+    io.observe(viewport)
+
+    paint()
+    return () => {
+      stop()
+      io.disconnect()
+      resizeObs.disconnect()
+    }
   }, [])
 
   return (

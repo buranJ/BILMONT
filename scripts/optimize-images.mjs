@@ -1,109 +1,60 @@
+/**
+ * Rebuilds the site photos from full-size originals.
+ *
+ *   1. Drop the original into .image-originals/ (or .image-originals/kids/)
+ *      using the same base name as on the site, e.g. d-3.jpg or kids/2.png.
+ *   2. Run `npm run images`.
+ *
+ * Every photo is re-encoded from its original (never from an already
+ * compressed WebP), so running it again does not degrade quality.
+ * Files starting with "_" are ignored.
+ */
 import sharp from 'sharp'
-import { readdir, mkdir, copyFile, stat } from 'node:fs/promises'
+import { readdir } from 'node:fs/promises'
 import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 
-const DIR = '/Users/a99699/Desktop/IT-DOS/Projects/BILMONT/public/assets/images'
-const BACKUP = path.join(DIR, '_original')
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
+const SRC = path.join(ROOT, '.image-originals')
+const OUT = path.join(ROOT, 'public/assets/images')
 
-// [glob-ish name, max width, quality]  — max width ≈ 2× the largest on-screen size
-const JOBS = [
-  // FeatureGrid portrait: rendered at max 520px (desktop) / 420px (mobile)
-  { files: ['m.png'], width: 1040, quality: 82, out: 'webp' },
-  // Stem gallery cards
-  { files: ['a-1.jpg', 'a-2.jpg', 'a-3.jpg', 'a-4.jpg', 'a-5.jpg'], width: 1400, quality: 80, out: 'webp' },
-  // Director portrait
-  { files: ['dir.jpg'], width: 900, quality: 82, out: 'webp' },
-  // Interior mosaic: largest cell ≈ 800px wide
-  {
-    files: ['d-1.jpg', 'd-2.jpg', 'd-3.jpg', 'd-4.jpg', 'd-5.jpg', 'd-6.jpg', 'd-7.jpg', 'd-8.jpg', 'd-9.jpg', 'd-10.png'],
-    width: 1200,
-    quality: 78,
-    out: 'webp',
-  },
+// [name test, outputs as [suffix, max width]..., quality]
+// Max width ≈ 2× the largest on-screen size.
+const RULES = [
+  { test: /^kids\//, sizes: [['', 420]], quality: 80 }, // hero carousel, 168px cards
+  { test: /^a-/, sizes: [['', 800]], quality: 78 }, // STEM cards, ~330px wide
+  { test: /^d-10$/, sizes: [['', 1200]], quality: 78 }, // interior lead image, 8/12 cols
+  { test: /^d-/, sizes: [['', 800]], quality: 76 }, // interior mosaic, 4/12 cols
+  { test: /^dir$/, sizes: [['', 900]], quality: 82 }, // director portrait
+  { test: /^m$/, sizes: [['', 1040], ['-640', 640]], quality: 82 }, // features portrait
 ]
-
-// Carousel cards render at 168px wide — 2048×2048 originals are absurd overkill.
-const KIDS = { dir: path.join(DIR, 'kids'), width: 420, quality: 80 }
 
 const kb = (n) => (n / 1024).toFixed(0) + ' KB'
 
-async function sizeOf(p) {
-  try {
-    return (await stat(p)).size
-  } catch {
-    return 0
+async function list(dir, prefix = '') {
+  const out = []
+  for (const e of await readdir(dir, { withFileTypes: true })) {
+    if (e.name.startsWith('_') || e.name.startsWith('.')) continue
+    if (e.isDirectory()) out.push(...(await list(path.join(dir, e.name), `${prefix}${e.name}/`)))
+    else if (/\.(jpe?g|png|webp|heic)$/i.test(e.name)) out.push(prefix + e.name)
   }
+  return out
 }
 
-let before = 0
-let after = 0
-
-await mkdir(BACKUP, { recursive: true })
-await mkdir(path.join(BACKUP, 'kids'), { recursive: true })
-
-for (const job of JOBS) {
-  for (const file of job.files) {
-    const src = path.join(DIR, file)
-    const srcSize = await sizeOf(src)
-    if (!srcSize) {
-      console.log(`skip (missing): ${file}`)
-      continue
-    }
-
-    await copyFile(src, path.join(BACKUP, file))
-
-    const outName = file.replace(/\.(png|jpg|jpeg)$/i, '.webp')
-    const dest = path.join(DIR, outName)
-
-    try {
-      // `failOn: none` tolerates slightly truncated JPEGs that still decode.
-      await sharp(src, { failOn: 'none' })
-        .resize({ width: job.width, withoutEnlargement: true })
-        .webp({ quality: job.quality })
-        .toFile(dest + '.tmp')
-    } catch (err) {
-      console.log(`FAIL ${file}: ${err.message.split('\n')[0]} — оригинал оставлен`)
-      continue
-    }
-
-    const { rename, unlink } = await import('node:fs/promises')
-    await rename(dest + '.tmp', dest)
-    // Remove the now-unused original (it lives in _original/)
-    if (outName !== file) await unlink(src)
-
-    const outSize = await sizeOf(dest)
-    before += srcSize
-    after += outSize
-    console.log(`${file.padEnd(12)} ${kb(srcSize).padStart(9)} → ${outName.padEnd(12)} ${kb(outSize).padStart(8)}`)
-  }
-}
-
-// kids/*.webp — recompress in place (same names, so no code changes needed)
-const kidFiles = (await readdir(KIDS.dir)).filter((f) => f.endsWith('.webp'))
-for (const file of kidFiles) {
-  const src = path.join(KIDS.dir, file)
-  const srcSize = await sizeOf(src)
-  await copyFile(src, path.join(BACKUP, 'kids', file))
-
-  const tmp = src + '.tmp'
-  try {
-    await sharp(src, { failOn: 'none' })
-      .resize({ width: KIDS.width, withoutEnlargement: true })
-      .webp({ quality: KIDS.quality })
-      .toFile(tmp)
-  } catch (err) {
-    console.log(`FAIL kids/${file}: ${err.message.split('\n')[0]}`)
+for (const file of await list(SRC)) {
+  const name = file.replace(/\.[^.]+$/, '')
+  const rule = RULES.find((r) => r.test.test(name))
+  if (!rule) {
+    console.log(`skip (no rule): ${file}`)
     continue
   }
-  const { rename } = await import('node:fs/promises')
-  await rename(tmp, src)
-
-  const outSize = await sizeOf(src)
-  before += srcSize
-  after += outSize
-  console.log(`kids/${file.padEnd(7)} ${kb(srcSize).padStart(9)} → ${kb(outSize).padStart(21)}`)
+  for (const [suffix, width] of rule.sizes) {
+    const dest = path.join(OUT, `${name}${suffix}.webp`)
+    const info = await sharp(path.join(SRC, file), { failOn: 'none' })
+      .rotate()
+      .resize({ width, withoutEnlargement: true })
+      .webp({ quality: rule.quality })
+      .toFile(dest)
+    console.log(`${file.padEnd(16)} → ${path.relative(OUT, dest).padEnd(16)} ${info.width}×${info.height}  ${kb(info.size)}`)
+  }
 }
-
-console.log('\n──────────────────────────────')
-console.log(`Итого: ${(before / 1048576).toFixed(1)} MB → ${(after / 1048576).toFixed(2)} MB`)
-console.log(`Экономия: ${(100 - (after / before) * 100).toFixed(1)}%`)

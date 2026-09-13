@@ -34,7 +34,7 @@ export default function Header() {
       <div className="mx-auto flex h-[72px] max-w-container items-center justify-between px-6">
         {/* Left: brand */}
         <a href="#top" className="flex items-center gap-2">
-          <img src="/logo.png" alt="" className="h-[36px] w-auto" />
+          <img src="/logo.webp" alt="" width="37" height="36" className="h-[36px] w-auto" />
           <span className="font-serif text-lg font-semibold tracking-tight text-dark">
             {t('brand')}
           </span>
