@@ -52,8 +52,8 @@ export default function Footer() {
             </h4>
             <ul className="mt-4 space-y-2.5 text-sm text-dark/70">
               <li>
-                <a href="mailto:admission@bilmont.kg" className="hover:text-green">
-                  admission@bilmont.kg
+                <a href={`mailto:${t('contact.email')}`} className="hover:text-green">
+                  {t('contact.email')}
                 </a>
               </li>
               <li>
